@@ -1,4 +1,6 @@
 import java.text.DecimalFormat
+import kotlin.time.Duration.Companion.ZERO
+import kotlin.time.Duration.Companion.milliseconds
 
 const val workHoursPerYear = 2080.00 // Based on 40 work hours a week and 52 work weeks in a year
 
@@ -48,12 +50,15 @@ fun runBasic() {
     print("Enter the number of people who attended the meeting (Example 5): ")
     val personCount = readln().toInt()
     print("Enter the average per-year salary of the people in the meeting (Example: 100000): ")
-    val averageMinutelySalary = (readln().toDouble() / workHoursPerYear) / 60.00
+    val averagePerYearSalary = readln().toDouble()
+    val averageMinutelySalary = (averagePerYearSalary / workHoursPerYear) / 60.00
     print("Enter the length of the meeting in minutes (Example: 30, 42, 60, 90, 420, etc.): ")
     val meetingLengthInMinutes = readln().toInt()
 
-    print("Total meeting cost is approximately... $${DecimalFormat("#,##0.00").format(personCount * averageMinutelySalary * meetingLengthInMinutes)}")
-    println("\n---BASIC END---")
+    println("--\nC&P friendly output:\n--")
+    println("Assuming no one was doing any work during the meeting. And assuming the following:\nNumber of people who attended the meeting: $personCount\nAverage per-year salary of the people in the meeting: \$${DecimalFormat("#,##0.00").format(averagePerYearSalary)}\nLength of the meeting in minutes: $meetingLengthInMinutes")
+    println("Total meeting cost is approximately... $${DecimalFormat("#,##0.00").format(personCount * averageMinutelySalary * meetingLengthInMinutes)}")
+    println("---BASIC END---\n")
 }
 
 
@@ -75,10 +80,13 @@ Let's begin...
 
     println("Alright, lets start counting!")
     var currentTotal = 0.00
+    var duration = ZERO
+
     while(true) {
         Thread.sleep(5000)
+        duration = duration.plus(5000.milliseconds)
         currentTotal +=  personCount * ((averageMinutelySalary / 60) * 5)
-        println("Current total is: $currentTotal")
+        println("Total Time: ${duration.inWholeHours}h:${duration.inWholeMinutes}m:${duration.inWholeSeconds % 60}s, Current total is: \$${DecimalFormat("#,##0.00").format(currentTotal)}")
     }
 //    println("\n---ADVANCED END---")
 }
