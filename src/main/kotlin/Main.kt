@@ -56,7 +56,7 @@ fun runBasic() {
     val meetingLengthInMinutes = readln().toInt()
 
     println("--\nC&P friendly output:\n--")
-    println("Assuming no one was doing any work during the meeting. And assuming the following:\nNumber of people who attended the meeting: $personCount\nAverage per-year salary of the people in the meeting: \$${DecimalFormat("#,##0.00").format(averagePerYearSalary)}\nLength of the meeting in minutes: $meetingLengthInMinutes")
+    println("Assuming the following:\nNo one was doing any work during the meeting.\nNumber of people who attended the meeting: $personCount\nAverage per-year salary of the people in the meeting: \$${DecimalFormat("#,##0.00").format(averagePerYearSalary)}\nLength of the meeting in minutes: $meetingLengthInMinutes")
     println("Total meeting cost is approximately... $${DecimalFormat("#,##0.00").format(personCount * averageMinutelySalary * meetingLengthInMinutes)}")
     println("---BASIC END---\n")
 }
